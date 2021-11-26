@@ -1,0 +1,91 @@
+Team Size- 11
+dev - 6
+QA - 2
+BA- 2
+Scrum Master -1
+
+ROLES AND RESPONSIBILITIES OR DAILY ROUTINE :
+============================================
+
+We start the day with scrum call in which we will update our current status on the stories. 
+After the call we will take up the pending stories and work on them first. 
+In case of new stories, we take the stories with higher priority and get themn done first.
+
+We have a two week sprint. We do In-sprint Manual testing and (N-1) Automation testing.
+I will write manual testcases and automation scripts in the first week of the sprint when the development is in-progress.
+We will Initiate the manual testing once the deployment is done.
+
+
+I will raise the defect to the concerned developer in case of any issue.
+I will Retest the defect once he gives me the fix.
+I will Close the defect if the fix works good, or else raise it again
+Once all stories are done,  I will do an integration.
+After integration, we will do an In-sprint end to end testing after my partner finishes his stories.
+
+We run regression on Wednesdays as we have release on every other friday. This is because we will have ample time for fixing
+production issues if any.
+
+So once all the stories are done, we will have a demo meeting with the client based on their availability. 
+We will show them what we have worked on and how we have executed the story.
+If they are satisfied, we will move the story to "Done" status. If not, we have to work again on the stories based on the requirement.
+
+
+AGILE-SCRUM CEREMONIES:
+======================
+
+GROOMING - The User stories will be explained to us by the BA's.
+SPRINT PLANNING- sCRUM MASTER will assign the stories and we have to give story points based the hours needed to work the story.
+SCRUM/STAND UP - Update abt work
+DEMO- Meeting with stakeholder/client explaining our work.
+RETROSPECTIVE- talking about old sprint, how it went and what are the gpositive points and negative points. How we can improve the upcoming sprint.
+
+PROJECT FLOW:
+==============
+
+I was working in an E-Commerce project. Our project is broken into modules, further into components and into elements. 
+So we have around 18-20 modules and around 1000 components and even more number of elements. We break up these into User stories covering atleast 10 elements per User story. 
+
+
+
+FRAMEWORK EXPLANATION :
+=======================
+
+I have extensively worked with Cucumber BDD framework. It contains multiple classes and files in its setup.I will give you a high level on how our Framework is setup.
+
+1. Feature File- We have a feature file in which we will give the test steps as inputs. We use multiple keywords like, Scenario, Scenario Outlinr, Background, Examples, Hooks etc.
+Given- We provide the preconditons  here
+When - We tell what has to be done for testing
+And - Anything contionuos action to the previous statement.
+Then- What will happen when we do something. Basically we do the validation here.
+But- Is for negative scenarios.
+
+2. Property File- We will have a property file in which we can store data in a key-value pair
+
+3. Base class- We have a seperate base class in which we will store all the methods necessary for the project.We will extend this class in Stepdefinition to access these methods.
+
+4. POM class- For every webPage in the application, we have a corresponding pom page in which we locate and store the elements of that page using @FindBy annotation for re-using them inside the script. 
+
+5. Singleton Class - We employ Singleton page for creating a single instance through which we can access all the elements of these POM classes. We use FileREaderManager and ConfigurationReader to do this.
+
+6. StepDefinition - We get the methods from the base class and the elements from the POM class and the object from singleton and also give logics inside the step methods.
+
+7. Runner Class- We run the script from here using JUnit. We map the Feature file and stepdfinition by giving their paths in "Feature" and "glue" under CucumberOptions. We can give any Plugins for reports if we want. We use cucumber extent reports.
+
+This is how my framework is set up.
+
+
+GITHUB for SOURCECODE MANAGEMENT:
+=================================
+
+1. git clone "url of clone link from Master" - We do this to import the build to our local.
+
+2. We create a seperate branch for working using, git checkout -b "branchname"
+
+3. We do all the coding work and changes or any automation scripting in this build. Once wer are done with the work, we add and commit the changes to the branch we created.
+
+4. git add .  - for adding the changes
+5. git commit -m "any message regarding the script"
+
+6. Now we will push it to the branch by git push origin "branchname"
+
+7. We will raise a PR (Pull request) with the QA Manager. Once he approves the request, we will merge it to the master by clicking the "Merge button" in the repository.
