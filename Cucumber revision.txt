@@ -1,0 +1,341 @@
+cucumber:
+
+BDD = behaviour driven  developement framework -- open source Tool[cucumber]
+
+
+Install:
+----------------
+
+Natural puglin or Cucumber puglin
+
+What are the dependies added:
+----------------------
+
+info-Cukes - 1.2.5 version
+
+cucumber- core
+cucmber-java
+cucumber-junit
+
+Selenium - 3.141.59 version
+
+screenshot - commons-Io - 2.8.0 version
+
+reports - Extend report - 3.1.2 version
+                 Extends report - 3.0.2 version
+
+
+3 major part in cucmber :-
+---------------------------------------------
+
+step 1 : first we need to create a file for features
+
+Feature : Feature - overall functionality
+so in that we need to add
+
+Scenario :  Step by step actions
+Given  - pre condition Or will launch Url
+When - action to be performed 
+And -  its an additional action
+Then -  Validation to check the given infomration is correct or not [Assert] soft assert coz it will execute even after it get error or post condition
+
+Types of asserts : Hard assert and soft assert
+
+Step 2:
+------------
+
+we need to create a class name
+
+stepdefinition :
+------------------
+
+using java and seleinum actions 
+
+adding snippets [ undefined methods ]
+
+Public static Webdriver driver = Runner.driver; ----------- clalling from step 4 ---------  (5)
+
+LOgin_Page lp = new Login_Page(driver); ----------------------- adding from POM page -----
+
+Step 3 :
+------------
+
+we need to create a class name called
+
+Runner :
+--------------
+
+running with junit annotation
+
+types of annotation for runner
+@Runwith(cucumber.class)
+@cucumberOptions(features = "src\\test\\java\\com\\project name \\feature", 
+glue = "com\\project\\stepdefinition")
+
+Step 4:
+-----------------
+
+public class Runner{  ---------- 1
+
+public static webdriver driver; -- null driver  -------- 4
+
+@beforeClass
+public static void browserlaunch{ ----------- 2
+              base_class.getbrowser("chrome); ------------------ 3
+  }
+
+
+}
+
+Step 5 :
+-------------
+
+we need to creates a pakage in that we need to create POM classes
+
+POM - Page object model :
+
+connecting all the locators
+
+Public static webdriver driver ; ==== null driver
+
+@findby(id ="value")
+private webelement username;
+
+rigth click cick source and select getter setter----
+
+Public Login_page(webdriver ldriver){  ======> it will create as  parameterized constructor
+             this.driver = ldriver;
+             pagefactory. initElement(ldriver,this)
+}
+
+public webelemnt getusername{
+                return username;
+
+}
+
+Step 6 :
+---------------
+ Create class-
+Page_Object_Manager:
+--------------------------------------
+
+Public Static webdriver driver;
+
+private Login_Page  login;
+private search_ Hotel  hotel;
+
+Public Login_page(webdriver ldriver){  ======> it will create as  parameterized constructor
+             this.driver = ldriver;
+             pagefactory. initElement(ldriver,this)
+
+}
+
+public Void---- will change to Login_page getLogin{
+    login = new Login_Page(driver);
+    return login;
+
+}
+
+public Void---- will change to Search_Hotel getHotel{
+    hotel= new Search_hotel (driver);
+    return hotel;
+}
+
+Step 7 :
+----------------
+
+singleton Design pattern:
+----------------------------------------
+ create on file name configuration_Property
+------------------------------------------
+
+Key=value
+browser = chrome
+url=https://www.facebook.com/
+
+step 8 :
+--------------
+
+Configuration_Reader
+----------------------
+Public Static property p;
+Public Configuration_Reader{
+  
+      File f = new File("properties file path")
+     FileInputStream fis = new FileInputStream(f);
+      Property p = new property();
+      p.load(fis)
+}
+
+public Void-- will change to string getBrowser{
+                      p.getproperty(browser).. returntype
+         String browser = p.getproperty(browser);
+         return browser;
+}
+
+Public void  will cghange to stringgetUrl{
+                        p.getproperty(url).. returntype
+         String url= p.geturl(browser);
+         return url
+
+}
+
+Step 9:
+----------------
+File_Reader_Manager:
+-------------------------------------
+
+private File_Reader_Manager{
+
+}
+
+
+public static void  will change to File_Reader_Manager getInstance{
+      File_Reader_Manager = new File_Reader_Manager();
+      return helper;
+}
+
+Public void will change to Configuration_Reader getInstanceCr{
+     Configuration_Reader reader = new Configuration_Reader();
+     return reader;
+}
+
+Step 10 :
+---------------------
+
+Runner:
+--------------
+
+public class Runner{
+
+public static webdriver driver; -- null driver 
+
+@beforeClass
+public static void browserlaunch{ 
+              File_Reader_Manager.getInstance().getInstanceCR().Getbrowser() - ReturnType
+String browser = 
+               driver=base_class.getbrowser(Browser);
+  }
+}
+
+Step 11:
+------------------
+
+Stepdefinition:
+---------------------------
+
+File_Reader_Manager.getInstance().getInstanceCR().Geturl()-- returntype
+String Url
+driver.geturl(url);
+
+step 12:
+--------------
+Runner:
+-----------
+
+@Runwith(cucumber.class)
+@cucumberOptions(features = "src\\test\\java\\com\\project name \\feature", 
+glue = "com\\project\\stepdefinition"  , 
+monochrome = true; -- to avoid special characters,
+dryRun = flase; --- it will show the missing file if any mismatch it will continue,
+strict = true;----- if any file mismatch it will stop the execution,
+tags = {"@login", "~@searchHotel"},
+plugins = }"pretty",  "com.cucumber.listener.extendCucumberFormatter: FolderName/ReportName.html",
+html:folderName,
+"json:FolderName/ReportName.html"})
+
+Background:
+-------------------
+Its also scenario
+will run before each and every scenario
+
+Hooks:
+---------------
+it will take and show scenario title
+it will show the status [passed,failed,skipped]
+can also take screenshot of failed test scenarios
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
